@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, FormEvent } from "react";
+import React, { Component } from "react";
 import { Event } from "../../../class/Event";
 
 interface EventsPageState {

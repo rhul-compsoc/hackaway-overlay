@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, FormEvent } from "react";
+import React, { ChangeEvent, Component } from "react";
 import styles from "./index.module.scss";
 
 interface EventsPageState {
