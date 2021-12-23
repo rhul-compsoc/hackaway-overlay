@@ -1,0 +1,30 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 1em;
+
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+
+.eventsList {
+  padding-bottom: 100vh;
+  max-height: 100%;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  &.selected {
+    background-color: beige;
+  }
+
+  &.deselected {
+    background-color: yellow;
+  }
+}
