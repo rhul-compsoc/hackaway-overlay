@@ -21,9 +21,7 @@ class Event {
   static parse(values: string) {
     return values
       .split("\n")
-      .map(
-        line => line.split(';')
-      )
+      .map((line) => line.split(";"))
       .map(
         ([id, time, name, description]) =>
           new Event({ id, time, name, description })

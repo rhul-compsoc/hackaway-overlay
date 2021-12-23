@@ -49,10 +49,13 @@ class EventsListPage extends Component<{}, EventsPageState> {
           <article
             key={event.id}
             id={event.id}
-            className={`transition-colors rounded p-3 drop-shadow ${event.id === this.state.event ? 'bg-gray-300' : 'bg-gray-100'}`}
+            className={`transition-colors rounded p-3 drop-shadow ${
+              event.id === this.state.event ? "bg-gray-300" : "bg-gray-100"
+            }`}
           >
             <div className="text-lg">
-              {event.name} <span className="whitespace-nowrap">@ {event.time}</span>
+              {event.name}{" "}
+              <span className="whitespace-nowrap">@ {event.time}</span>
             </div>
             <div>{event.description}</div>
           </article>

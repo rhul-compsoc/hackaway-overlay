@@ -43,11 +43,7 @@ const configs = [
           },
           {
             test: /\.css$/i,
-            use: [
-              "style-loader",
-              "css-loader",
-              "postcss-loader"
-            ],
+            use: ["style-loader", "css-loader", "postcss-loader"],
           },
           {
             test: /\.s[ac]ss$/i,
@@ -84,11 +80,11 @@ const configs = [
         }),
         new HtmlWebpackPlugin({
           template: path.resolve(SRC, parsed.dir, "index.html"),
-          filename: "eventsList.html"
+          filename: "eventsList.html",
         }),
         new HtmlWebpackPlugin({
           template: path.resolve(SRC, parsed.dir, "index.html"),
-          filename: "eventPicker.html"
+          filename: "eventPicker.html",
         }),
         new WebpackLiveReloadPlugin({
           port: 0,
