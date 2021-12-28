@@ -26,6 +26,10 @@ class SpotifyPage extends Component<{}, SpotifyPageState> {
     );
   }
 
+  getPlayerArtists(player: SpotifyPlayer) {
+    return player?.item?.artists?.map((artist: any) => artist.name).join(", ");
+  }
+
   componentDidMount() {
     spotifyPlayerReplicant.on("change", (value) => {
       this.setState((oldState) => {
@@ -70,13 +74,17 @@ class SpotifyPage extends Component<{}, SpotifyPageState> {
                     src={this.getPlayerAlbumArt(player)}
                   ></img>
                   <div className="flex flex-col justify-center pl-4 text-white">
-                    <p className="text-xl font-bold">{player?.item?.name}</p>
-                    <p className="italic">{player?.item?.album?.name}</p>
+                    <p className="text-xl font-bold leading-5">
+                      {player?.item?.name}
+                    </p>
+                    <p className="italic leading-5">
+                      {this.getPlayerArtists(player)}
+                    </p>
                   </div>
                 </div>
               ) : (
-                <div className="p-2">
-                  <p>Not playing</p>
+                <div className="h-bottom flex justify-center items-center p-2 text-gray-500">
+                  <p className="text-xl font-bold">Nothing playing...</p>
                 </div>
               )}
             </div>

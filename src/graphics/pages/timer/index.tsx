@@ -80,31 +80,24 @@ class TimerPage extends Component<{}, TimerPageState> {
     let hours = Math.floor(secondsRemaining / 3600);
 
     return (
-      <div className="bg-hackaway-grey h-24 w-full flex justify-end items-center">
-        <div className="flex flex-col items-center">
-          <div className="pr-5 text-white flex">
-            <div className="flex flex-col w-20 text-center">
-              <span className="text-4xl font-bold">{hours}</span>
-              <span className="text-hackaway-orange font-semibold">
-                hour{hours === 1 ? "" : "s"}
-              </span>
-            </div>
-            <div className="flex flex-col w-20 text-center">
-              <span className="text-4xl font-bold">{minutes}</span>
-              <span className="text-hackaway-orange font-semibold">
-                minute{minutes === 1 ? "" : "s"}
-              </span>
-            </div>
-            <div className="flex flex-col w-20 text-center">
-              <span className="text-4xl font-bold">{seconds}</span>
-              <span className="text-hackaway-orange font-semibold">
-                second{seconds === 1 ? "" : "s"}
-              </span>
-            </div>
-          </div>
-          {/* <div className="pr-5 text-white lowercase text-sm">
-            Time Remaining
-          </div> */}
+      <div className="px-5 h-24 text-white inline-flex items-center">
+        <div className="flex flex-col w-20 text-center">
+          <span className="text-4xl font-bold">{hours}</span>
+          <span className="text-hackaway-orange font-semibold">
+            hour{hours === 1 ? "" : "s"}
+          </span>
+        </div>
+        <div className="flex flex-col w-20 text-center">
+          <span className="text-4xl font-bold">{minutes}</span>
+          <span className="text-hackaway-orange font-semibold">
+            minute{minutes === 1 ? "" : "s"}
+          </span>
+        </div>
+        <div className="flex flex-col w-20 text-center">
+          <span className="text-4xl font-bold">{seconds}</span>
+          <span className="text-hackaway-orange font-semibold">
+            second{seconds === 1 ? "" : "s"}
+          </span>
         </div>
       </div>
     );
