@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackLiveReloadPlugin = require("webpack-livereload-plugin");
 const path = require("path");
+const { EnvironmentPlugin } = require("webpack");
 
 const entrypoints = ["./dashboard/index.tsx", "./graphics/index.tsx"];
 const pages = [
@@ -122,6 +123,7 @@ const configs = [
           port: 0,
           appendScriptTag: true,
         }),
+        new EnvironmentPlugin(["SPOTIFY_CLIENT_SECRET"]),
       ],
       output: {
         path: path.resolve(NODECG, parsed.dir),
