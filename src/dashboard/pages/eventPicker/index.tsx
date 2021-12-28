@@ -39,12 +39,20 @@ class EventPickerPage extends Component<{}, EventsPageState> {
     const events = Event.parse(this.state.events);
 
     return (
-      <div>
-        <table>
+      <div className="p-2">
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Time</th>
+              <th>Event</th>
+            </tr>
+          </thead>
           <tbody>
             {events.map((event) => (
-              <tr key={event.id}>
-                <td>
+              <tr key={event.id} className="divide-y">
+                <td className="p-1">
                   <input
                     type="radio"
                     name="eventPicker"
@@ -53,8 +61,9 @@ class EventPickerPage extends Component<{}, EventsPageState> {
                     onChange={this.setEvent(event.id)}
                   />
                 </td>
-                <td>{event.id}</td>
-                <td>{event.name}</td>
+                <td className="p-1">{event.id}</td>
+                <td className="p-1">{event.time}</td>
+                <td className="p-1">{event.name}</td>
               </tr>
             ))}
           </tbody>

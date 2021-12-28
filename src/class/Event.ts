@@ -20,6 +20,7 @@ class Event {
 
   static parse(values: string) {
     return values
+      .trim()
       .split("\n")
       .map((line) => line.split(";"))
       .map(

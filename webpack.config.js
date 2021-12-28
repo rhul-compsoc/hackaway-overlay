@@ -4,6 +4,14 @@ const WebpackLiveReloadPlugin = require("webpack-livereload-plugin");
 const path = require("path");
 
 const entrypoints = ["./dashboard/index.tsx", "./graphics/index.tsx"];
+const pages = [
+  "eventsList",
+  "eventPicker",
+  "logoMark",
+  "timer",
+  "doovde",
+  "spotify",
+];
 
 const SRC = path.resolve(__dirname, "src");
 
@@ -24,6 +32,31 @@ const configs = [
     ],
     output: {
       path: NODECG,
+    },
+  },
+  {
+    entry: path.resolve(SRC, "extension", "index.ts"),
+    devtool: "source-map",
+    context: path.resolve(SRC, "extension"),
+    target: "node",
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/i,
+          use: "babel-loader",
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
+    },
+    output: {
+      path: path.resolve(NODECG, "extension"),
+      filename: "index.js",
+      library: {
+        type: "commonjs2",
+      },
     },
   },
   ...entrypoints.map((entrypoint) => {
@@ -78,14 +111,13 @@ const configs = [
         new HtmlWebpackPlugin({
           template: path.resolve(SRC, parsed.dir, "index.html"),
         }),
-        new HtmlWebpackPlugin({
-          template: path.resolve(SRC, parsed.dir, "index.html"),
-          filename: "eventsList.html",
-        }),
-        new HtmlWebpackPlugin({
-          template: path.resolve(SRC, parsed.dir, "index.html"),
-          filename: "eventPicker.html",
-        }),
+        ...pages.map(
+          (page) =>
+            new HtmlWebpackPlugin({
+              template: path.resolve(SRC, parsed.dir, "index.html"),
+              filename: page + ".html",
+            })
+        ),
         new WebpackLiveReloadPlugin({
           port: 0,
           appendScriptTag: true,

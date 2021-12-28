@@ -43,22 +43,34 @@ class EventsListPage extends Component<{}, EventsPageState> {
   render(): React.ReactNode {
     const events = Event.parse(this.state.events);
 
+    let currentEventIndex = events.findIndex(
+      (event) => event.id === this.state.event
+    );
+
     return (
-      <main className="grid gap-3">
-        {events.map((event) => (
-          <article
-            key={event.id}
-            id={event.id}
-            className={`transition-colors rounded p-3 drop-shadow ${
-              event.id === this.state.event ? "bg-gray-300" : "bg-gray-100"
-            }`}
-          >
-            <div className="text-lg">
-              {event.name}{" "}
-              <span className="whitespace-nowrap">@ {event.time}</span>
-            </div>
-            <div>{event.description}</div>
-          </article>
+      <main className="bg-hackaway-grey grid px-3 pb-3 w-80">
+        {events.map((event, index) => (
+          <div key={event.id} id={event.id}>
+            <article
+              className={`transition-colors rounded mt-3 p-3 drop-shadow ${
+                index < currentEventIndex ? "bg-gray-50 text-gray-500" : ""
+              }${index === currentEventIndex ? "bg-gray-300" : ""}${
+                index > currentEventIndex ? "bg-gray-100" : ""
+              }`}
+            >
+              {index === currentEventIndex && <div>Current event:</div>}
+              {index === currentEventIndex + 1 && <div>Next up:</div>}
+              <div className="text-xl">
+                {event.name && <span className="font-bold">{event.name}</span>}
+                {event.time && (
+                  <span className="whitespace-nowrap"> @ {event.time}</span>
+                )}
+              </div>
+              {event.description && (
+                <div className="text-lg">{event.description}</div>
+              )}
+            </article>
+          </div>
         ))}
       </main>
     );

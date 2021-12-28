@@ -30,14 +30,43 @@
       {
         "name": "eventPicker",
         "title": "Event Picker",
-        "width": 2,
+        "width": 3,
         "file": "eventPicker.html",
         "headerColor": "#525F78"
+      },
+      {
+        "name": "timer",
+        "title": "Timer",
+        "width": 2,
+        "file": "timer.html",
+        "headerColor": "#525F78"
+      },
+      {
+        "name": "spotify",
+        "title": "Track Track Go!",
+        "width": 3,
+        "file": "spotify.html",
+        "headerColor": "#1ed760"
       }
     ],
     "graphics": [
       {
         "file": "eventsList.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "logoMark.html",
+        "width": 384,
+        "height": 128
+      },
+      {
+        "file": "timer.html",
+        "width": 1920,
+        "height": 96
+      },
+      {
+        "file": "doovde.html",
         "width": 1920,
         "height": 1080
       }
