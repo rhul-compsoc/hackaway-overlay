@@ -69,7 +69,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
           <div
             key={popup.id}
             id={popup.markdown}
-            className={`h-24 p-2 bg-hackaway-grey fixed top-0 left-0 w-4/6 ${
+            className={`h-24 p-2 bg-hackaway-grey fixed top-0 left-0 w-5/6 ${
               index === slicedArray.length - 1
                 ? "animate-slide-from-left z-20"
                 : ""
