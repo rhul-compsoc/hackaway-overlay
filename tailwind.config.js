@@ -36,11 +36,21 @@ module.exports = {
             filter: "brightness(60%)",
           },
         },
+        disappear: {
+          "0%": {
+            filter: "opacity(100%)",
+          },
+          "100%": {
+            filter: "opacity(0%)",
+          },
+        },
       },
       animation: {
         "slide-from-top": "slide-from-top 1s ease-in-out",
         "slide-from-left": "slide-from-left 1s ease-in-out forwards",
+        "slide-from-left-.5": "slide-from-left .5s ease-in-out forwards",
         darken: "darken 1s ease-in-out forwards",
+        disappear: "disappear 1s ease-in-out forwards",
       },
     },
   },

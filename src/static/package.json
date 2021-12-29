@@ -54,6 +54,13 @@
         "width": 4,
         "file": "sidePopup.html",
         "headerColor": "#525F78"
+      },
+      {
+        "name": "live",
+        "title": "Live Indicator",
+        "width": 4,
+        "file": "live.html",
+        "headerColor": "#525F78"
       }
     ],
     "graphics": [
@@ -84,6 +91,11 @@
       },
       {
         "file": "sidePopup.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "live.html",
         "width": 1920,
         "height": 1080
       }

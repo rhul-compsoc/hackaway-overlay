@@ -6,6 +6,7 @@ import { TimerPage } from "./pages/timer";
 import { LogoMark } from "./pages/logoMark";
 import { SpotifyPage } from "./pages/spotify";
 import { SidePopupPage } from "./pages/sidePopup";
+import { LivePage } from "./pages/live";
 // import styles from "./index.module.scss";
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
       <Route path="/doovde.html" element={<DoovdePage />} />
       <Route path="/spotify.html" element={<SpotifyPage />} />
       <Route path="/sidePopup.html" element={<SidePopupPage />} />
+      <Route path="/live.html" element={<LivePage />} />
     </Routes>
   </Router>
 );

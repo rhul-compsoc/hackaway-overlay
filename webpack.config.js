@@ -13,6 +13,7 @@ const pages = [
   "doovde",
   "spotify",
   "sidePopup",
+  "live",
 ];
 
 const SRC = path.resolve(__dirname, "src");
