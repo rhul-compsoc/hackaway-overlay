@@ -21,6 +21,10 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
     };
     this.setMessages = this.setMessages.bind(this);
     this.nextMessage = this.nextMessage.bind(this);
+    this.getPopups = this.getPopups.bind(this);
+  }
+  getPopups() {
+    return this.state.popups.filter((popup) => popup.show);
   }
   componentDidMount() {
     sidePopupMessagesReplicant.on("change", this.setMessages);
@@ -35,7 +39,9 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
     });
   }
   nextMessage() {
-    if (this.state.popups.length) {
+    const popups = this.getPopups();
+
+    if (popups.length) {
       const { popupIndex, popups } = this.state;
       const newPopupIndex = (popupIndex + 1) % popups.length;
       const newMessage = popups[newPopupIndex];
@@ -51,9 +57,11 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
   }
 
   render() {
+    const popups = this.getPopups();
+
     const queueArray = [
-      ...this.state.popups.slice(this.state.popupIndex),
-      ...this.state.popups.slice(0, this.state.popupIndex),
+      ...popups.slice(this.state.popupIndex),
+      ...popups.slice(0, this.state.popupIndex),
     ];
     return (
       <div className="sidePopupPage">

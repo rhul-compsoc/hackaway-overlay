@@ -27,6 +27,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
     this.removeMessage = this.removeMessage.bind(this);
     this.setMessageText = this.setMessageText.bind(this);
     this.setMessageTime = this.setMessageTime.bind(this);
+    this.toggleMessageEnable = this.toggleMessageEnable.bind(this);
   }
   componentDidMount() {
     sidePopupMessagesReplicant.on("change", this.setMessages);
@@ -84,6 +85,22 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
       }));
     };
   }
+  toggleMessageEnable(id: PopupInterface["id"]) {
+    return () => {
+      this.setState((prevState) => ({
+        popups: prevState.popups.map((popup) => {
+          if (popup.id === id) {
+            return {
+              ...popup,
+              show: !popup.show,
+            };
+          }
+          return popup;
+        }),
+        changes: true,
+      }));
+    };
+  }
   addMessage() {
     this.setState((prevState) => ({
       popups: [
@@ -92,6 +109,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
           id: Date.now(),
           markdown: "",
           time: 30,
+          show: true,
         },
       ],
     }));
@@ -134,7 +152,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
           </button>
         </div>
         {this.state.popups.map((popup) => (
-          <section key={popup.id} className="py-1">
+          <section key={popup.id} className="pt-6">
             <textarea
               className="w-full text-black"
               value={popup.markdown}
@@ -155,6 +173,12 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
               onClick={this.removeMessage(popup.id)}
             >
               Remove this card
+            </button>
+            <button
+              className="p-2 rounded text-center bg-blue-500"
+              onClick={this.toggleMessageEnable(popup.id)}
+            >
+              {popup.show ? "Disable" : "Enable"}
             </button>
           </section>
         ))}
