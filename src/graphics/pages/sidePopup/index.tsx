@@ -56,7 +56,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
       ...this.state.popups.slice(0, this.state.popupIndex),
     ];
     return (
-      <div>
+      <div className="sidePopupPage">
         {queueArray.reverse().map((popup, index, slicedArray) => (
           <div
             key={popup.id}
