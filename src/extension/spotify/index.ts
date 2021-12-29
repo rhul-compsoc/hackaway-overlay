@@ -10,7 +10,7 @@ const SPOTIFY_SCOPES = [
 
 const REDIRECT =
   "http://127.0.0.1:9090/bundles/royalhackaway-overlay/spotify/callback";
-const CLIENT_ID = "20d9f43c71354c3c84ddc12c156e5e8a";
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
 const spotify = async (nodecg: NodeCG) => {

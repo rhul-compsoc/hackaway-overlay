@@ -47,6 +47,13 @@
         "width": 3,
         "file": "spotify.html",
         "headerColor": "#1ed760"
+      },
+      {
+        "name": "sidePopup",
+        "title": "Top Bar Cards",
+        "width": 4,
+        "file": "sidePopup.html",
+        "headerColor": "#525F78"
       }
     ],
     "graphics": [
@@ -72,6 +79,11 @@
       },
       {
         "file": "spotify.html",
+        "width": 320,
+        "height": 84
+      },
+      {
+        "file": "sidePopup.html",
         "width": 1920,
         "height": 1080
       }

@@ -58,14 +58,16 @@ class SpotifyPage extends Component<{}, SpotifyPageState> {
     const { players } = this.state;
 
     return (
-      <div className="h-bottom w-80 bg-hackaway-grey">
+      <div className="h-bottom w-80 bg-hackaway-dark-grey">
         {players
           .slice()
           .reverse()
-          .map((player: SpotifyPlayer) => (
+          .map((player: SpotifyPlayer, index) => (
             <div
               key={player.timestamp}
-              className="h-bottom w-80 bg-hackaway-grey fixed animate-slide"
+              className={`h-bottom w-80 bg-hackaway-dark-grey fixed animate-slide-from-top ${
+                index !== 0 ? "animate-darken" : ""
+              }`}
             >
               {player.is_playing ? (
                 <div className="flex">

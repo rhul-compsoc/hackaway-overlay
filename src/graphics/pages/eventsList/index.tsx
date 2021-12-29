@@ -60,10 +60,14 @@ class EventsListPage extends Component<{}, EventsPageState> {
             >
               {index === currentEventIndex && <div>Current event:</div>}
               {index === currentEventIndex + 1 && <div>Next up:</div>}
-              <div className="text-xl">
-                {event.name && <span className="font-bold">{event.name}</span>}
+              <div>
                 {event.time && (
-                  <span className="whitespace-nowrap"> @ {event.time}</span>
+                  <span className="whitespace-nowrap float-right">
+                    {event.time}
+                  </span>
+                )}
+                {event.name && (
+                  <span className="text-xl font-bold">{event.name}</span>
                 )}
               </div>
               {event.description && (

@@ -12,6 +12,7 @@ const pages = [
   "timer",
   "doovde",
   "spotify",
+  "sidePopup",
 ];
 
 const SRC = path.resolve(__dirname, "src");
@@ -52,6 +53,9 @@ const configs = [
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
+    plugins: [
+      new EnvironmentPlugin(["SPOTIFY_CLIENT_SECRET", "SPOTIFY_CLIENT_ID"]),
+    ],
     output: {
       path: path.resolve(NODECG, "extension"),
       filename: "index.js",
@@ -123,7 +127,6 @@ const configs = [
           port: 0,
           appendScriptTag: true,
         }),
-        new EnvironmentPlugin(["SPOTIFY_CLIENT_SECRET"]),
       ],
       output: {
         path: path.resolve(NODECG, parsed.dir),

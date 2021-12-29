@@ -1485,6 +1485,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/marked@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@types/marked@npm:4.0.1"
+  checksum: c2dabaae5ed5e2806ee3ef7f717ef7fe91ac5ee2718162219dd34de9d684d36efd561987fb3316b659d1add6d432696ca507da04b94380a77aac30870cb276d7
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 16.11.12
   resolution: "@types/node@npm:16.11.12"
@@ -4148,6 +4155,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"marked@npm:^4.0.8":
+  version: 4.0.8
+  resolution: "marked@npm:4.0.8"
+  bin:
+    marked: bin/marked.js
+  checksum: b2dba00757640724a3ba93d3ceeffbd5d5ef91f03d826da66375cb07510e7396a4d0d86e216dc9d9da5e84a5368864ab9f37cfc559fb2ca492f65603db85cc34
+  languageName: node
+  linkType: hard
+
 "memorystream@npm:^0.3.1":
   version: 0.3.1
   resolution: "memorystream@npm:0.3.1"
@@ -5366,6 +5382,7 @@ __metadata:
     "@babel/preset-react": ^7.16.0
     "@babel/preset-typescript": ^7.16.0
     "@fontsource/roboto": ^4.5.1
+    "@types/marked": ^4.0.1
     "@types/react": ^17.0.37
     "@types/react-dom": ^17.0.11
     "@types/spotify-web-api-node": ^5.0.4
@@ -5373,8 +5390,10 @@ __metadata:
     babel-loader: ^8.2.3
     copy-webpack-plugin: ^10.1.0
     css-loader: ^6.5.1
+    dotenv: ^10.0.0
     file-loader: ^6.2.0
     html-webpack-plugin: ^5.5.0
+    marked: ^4.0.8
     npm-run-all: ^4.1.5
     postcss-import: ^14.0.2
     postcss-loader: ^6.2.1
