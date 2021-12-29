@@ -51,6 +51,7 @@ module.exports = {
         "slide-from-left-.5": "slide-from-left .5s ease-in-out forwards",
         darken: "darken 1s ease-in-out forwards",
         disappear: "disappear 1s ease-in-out forwards",
+        appear: "disappear 1s ease-in-out reverse",
       },
     },
   },

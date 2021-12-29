@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Event } from "../../../class/Event";
+import { EventCard } from "./EventCard";
 
 interface EventsPageState {
   events: string;
@@ -48,33 +49,14 @@ class EventsListPage extends Component<{}, EventsPageState> {
     );
 
     return (
-      <main className="bg-hackaway-grey grid px-3 pb-3 w-80">
+      <main className="bg-hackaway-grey grid px-3 pb-[100rem] w-80">
         {events.map((event, index) => (
-          <div key={event.id} id={event.id}>
-            <article
-              className={`transition-colors rounded mt-3 p-3 drop-shadow ${
-                index < currentEventIndex ? "bg-gray-50 text-gray-500" : ""
-              }${index === currentEventIndex ? "bg-gray-300" : ""}${
-                index > currentEventIndex ? "bg-gray-100" : ""
-              }`}
-            >
-              {index === currentEventIndex && <div>Current event:</div>}
-              {index === currentEventIndex + 1 && <div>Next up:</div>}
-              <div>
-                {event.time && (
-                  <span className="whitespace-nowrap float-right">
-                    {event.time}
-                  </span>
-                )}
-                {event.name && (
-                  <span className="text-xl font-bold">{event.name}</span>
-                )}
-              </div>
-              {event.description && (
-                <div className="text-lg">{event.description}</div>
-              )}
-            </article>
-          </div>
+          <EventCard
+            currentEventIndex={currentEventIndex}
+            index={index}
+            event={event}
+            key={event.id}
+          />
         ))}
       </main>
     );
