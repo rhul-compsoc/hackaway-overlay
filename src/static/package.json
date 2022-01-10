@@ -66,8 +66,8 @@
     "graphics": [
       {
         "file": "eventsList.html",
-        "width": 1920,
-        "height": 1080
+        "width": 320,
+        "height": 868
       },
       {
         "file": "logoMark.html",
@@ -76,7 +76,7 @@
       },
       {
         "file": "timer.html",
-        "width": 1920,
+        "width": 280,
         "height": 96
       },
       {
@@ -92,12 +92,12 @@
       {
         "file": "sidePopup.html",
         "width": 1920,
-        "height": 1080
+        "height": 96
       },
       {
         "file": "live.html",
-        "width": 1920,
-        "height": 1080
+        "width": 1000,
+        "height": 32
       }
     ]
   },
