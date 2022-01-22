@@ -61,6 +61,13 @@
         "width": 4,
         "file": "live.html",
         "headerColor": "#525F78"
+      },
+      {
+        "name": "twitter",
+        "title": "the funny bird platform",
+        "width": 4,
+        "file": "twitter.html",
+        "headerColor": "#1DA1F2"
       }
     ],
     "graphics": [
@@ -96,6 +103,11 @@
       },
       {
         "file": "live.html",
+        "width": 1000,
+        "height": 32
+      },
+      {
+        "file": "twitter.html",
         "width": 1000,
         "height": 32
       }

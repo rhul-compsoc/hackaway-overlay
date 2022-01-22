@@ -14,6 +14,7 @@ const pages = [
   "spotify",
   "sidePopup",
   "live",
+  "twitter",
 ];
 
 const SRC = path.resolve(__dirname, "src");
@@ -55,7 +56,11 @@ const configs = [
       extensions: [".tsx", ".ts", ".js"],
     },
     plugins: [
-      new EnvironmentPlugin(["SPOTIFY_CLIENT_SECRET", "SPOTIFY_CLIENT_ID"]),
+      new EnvironmentPlugin([
+        "SPOTIFY_CLIENT_SECRET",
+        "SPOTIFY_CLIENT_ID",
+        "TWITTER_BEARER_TOKEN",
+      ]),
     ],
     output: {
       path: path.resolve(NODECG, "extension"),
