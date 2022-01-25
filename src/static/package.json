@@ -98,6 +98,11 @@
         "file": "live.html",
         "width": 1000,
         "height": 32
+      },
+      {
+        "file": "all.html",
+        "width": 1920,
+        "height": 1080
       }
     ]
   },

@@ -7,6 +7,7 @@ import { LogoMark } from "./pages/logoMark";
 import { SpotifyPage } from "./pages/spotify";
 import { SidePopupPage } from "./pages/sidePopup";
 import { LivePage } from "./pages/live";
+import { AllPage } from "./pages/all";
 // import styles from "./index.module.scss";
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/spotify.html" element={<SpotifyPage />} />
       <Route path="/sidePopup.html" element={<SidePopupPage />} />
       <Route path="/live.html" element={<LivePage />} />
+      <Route path="/all.html" element={<AllPage />} />
     </Routes>
   </Router>
 );

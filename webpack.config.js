@@ -14,6 +14,7 @@ const pages = [
   "spotify",
   "sidePopup",
   "live",
+  "all",
 ];
 
 const SRC = path.resolve(__dirname, "src");
