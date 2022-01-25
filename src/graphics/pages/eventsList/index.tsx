@@ -49,7 +49,7 @@ class EventsListPage extends Component<{}, EventsPageState> {
     );
 
     return (
-      <main className="bg-hackaway-grey grid px-3 pb-[100rem] w-80">
+      <main className="bg-hackaway-grey grid px-3 w-80 h-full overflow-hidden">
         {events.map((event, index) => (
           <EventCard
             currentEventIndex={currentEventIndex}
@@ -58,6 +58,7 @@ class EventsListPage extends Component<{}, EventsPageState> {
             key={event.id}
           />
         ))}
+        <div className="h-screen"></div>
       </main>
     );
   }

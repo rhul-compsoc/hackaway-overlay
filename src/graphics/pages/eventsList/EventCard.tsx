@@ -35,10 +35,14 @@ class EventCard extends Component<EventCardProps, EventCardState> {
   check() {
     const div = this.container.current;
 
-    if (div) {
-      const bounds = div.getBoundingClientRect();
+    if (div && div.parentElement) {
+      const thisBounds = div.getBoundingClientRect();
+      const parentBounds = div.parentElement.getBoundingClientRect();
+
       this.setState({
-        show: bounds.y + bounds.height < window.innerHeight,
+        show:
+          thisBounds.y + thisBounds.height <
+          parentBounds.y + parentBounds.height,
       });
     }
 
