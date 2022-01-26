@@ -57,17 +57,7 @@ const configs = [
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
-<<<<<<< HEAD
-    plugins: [
-      new EnvironmentPlugin([
-        "SPOTIFY_CLIENT_SECRET",
-        "SPOTIFY_CLIENT_ID",
-        "TWITTER_BEARER_TOKEN",
-      ]),
-    ],
-=======
     plugins: [new DotenvWebpackPlugin()],
->>>>>>> master
     output: {
       path: path.resolve(NODECG, "extension"),
       filename: "index.js",
