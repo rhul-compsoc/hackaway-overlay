@@ -2,7 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackLiveReloadPlugin = require("webpack-livereload-plugin");
 const path = require("path");
-const { EnvironmentPlugin } = require("webpack");
+// const { EnvironmentPlugin } = require("webpack");
+const DotenvWebpackPlugin = require("dotenv-webpack");
 
 const entrypoints = ["./dashboard/index.tsx", "./graphics/index.tsx"];
 const pages = [
@@ -55,9 +56,7 @@ const configs = [
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
-    plugins: [
-      new EnvironmentPlugin(["SPOTIFY_CLIENT_SECRET", "SPOTIFY_CLIENT_ID"]),
-    ],
+    plugins: [new DotenvWebpackPlugin()],
     output: {
       path: path.resolve(NODECG, "extension"),
       filename: "index.js",
