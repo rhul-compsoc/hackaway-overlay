@@ -2,7 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackLiveReloadPlugin = require("webpack-livereload-plugin");
 const path = require("path");
-const { EnvironmentPlugin } = require("webpack");
+// const { EnvironmentPlugin } = require("webpack");
+const DotenvWebpackPlugin = require("dotenv-webpack");
 
 const entrypoints = ["./dashboard/index.tsx", "./graphics/index.tsx"];
 const pages = [
@@ -15,6 +16,7 @@ const pages = [
   "sidePopup",
   "live",
   "twitter",
+  "all",
 ];
 
 const SRC = path.resolve(__dirname, "src");
@@ -55,6 +57,7 @@ const configs = [
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
+<<<<<<< HEAD
     plugins: [
       new EnvironmentPlugin([
         "SPOTIFY_CLIENT_SECRET",
@@ -62,6 +65,9 @@ const configs = [
         "TWITTER_BEARER_TOKEN",
       ]),
     ],
+=======
+    plugins: [new DotenvWebpackPlugin()],
+>>>>>>> master
     output: {
       path: path.resolve(NODECG, "extension"),
       filename: "index.js",
