@@ -1,39 +1,14 @@
-import classNames from "classnames";
 import React from "react";
+import classNames from "classnames";
 
 enum TweetAuthMode {
-  UNDECIDED,
-  BAD,
-  GOOD,
+  NEW = "NEW",
+  BAD = "BAD",
+  GOOD = "GOOD",
 }
 
-const HASHTAG = "7COILISASTUPIDFUCK";
-
-const ENDPOINT = "http://localhost:8000/api/since_id";
-
-const fetchTweetsSince = async (since_id?: number) => {
-  const endpoint_with_params = new URL(ENDPOINT);
-
-  endpoint_with_params.searchParams.append("hash", HASHTAG);
-  since_id &&
-    endpoint_with_params.searchParams.append("id", since_id.toString());
-
-  const req = await fetch(endpoint_with_params.toString(), {
-    method: "get",
-    mode: "cors",
-  });
-
-  console.log(req.body);
-};
-
-const handleRefresh = async () => {
-  fetchTweetsSince();
-};
-
 const Twitter: React.FC = () => {
-  const [mode, setMode] = React.useState<TweetAuthMode>(
-    TweetAuthMode.UNDECIDED
-  );
+  const [mode, setMode] = React.useState<TweetAuthMode>(TweetAuthMode.NEW);
 
   return (
     <div className="p-2">
@@ -41,18 +16,16 @@ const Twitter: React.FC = () => {
         <p className="text-xl mb-2">Twitter Timeline</p>
       </div>
       <div className="p-2">
+        <p>
+          To manage the data base{" "}
+          <a href="https://twitter.djpiper28.co.uk/">click here</a>
+        </p>
         <div className="flex items-center justify-center flex-col mb-3 gap-y-5">
-          <button
-            onClick={handleRefresh}
-            className="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
-          >
-            Refresh Database
-          </button>
           <Selector
             options={[
               {
                 name: "To Be Decided",
-                type: TweetAuthMode.UNDECIDED,
+                type: TweetAuthMode.NEW,
                 style: "bg-blue-600",
               },
               {
@@ -76,36 +49,38 @@ const Twitter: React.FC = () => {
   );
 };
 
-interface TwitterReplicantEntry {
-  id: number;
-  text: string;
-  author_username: string;
-  author_name: string;
-  author_pf_link: string;
-  time: string;
-  authorized: TweetAuthMode;
+const API_URL = "http://localhost:8000/api/fetch_by/";
+
+interface TWEET {
+  AUTHORIZED: 0 | 1 | 2;
+  GIF_URL?: string;
+  HAS_GI?: 0 | 1;
+  TWEET_AUTHOR_NAME: string;
+  TWEET_AUTHOR_PF_LINK: string;
+  TWEET_AUTHOR_USERNAME: string;
+  TWEET_ID: string;
+  TWEET_TEXT: string;
+  TWEET_TIME: 1644014924;
 }
 
-const TwitterReplicant = nodecg.Replicant<TwitterReplicantEntry[]>("tweets");
-
 const TweetList: React.FC<{ mode: TweetAuthMode }> = ({ mode }) => {
-  const [tweets, setTweets] = React.useState<TwitterReplicantEntry[]>([]);
+  const [tweets, setTweets] = React.useState<TWEET[]>([]);
 
   React.useEffect(() => {
-    console.log(tweets);
-
-    TwitterReplicant.addListener("change", (v) => {
-      setTweets(v);
-    });
-  }, []);
+    fetch(new URL(mode, API_URL).toString())
+      .then((req) => req.json())
+      .then((res) => setTweets(res));
+  }, [mode]);
 
   return (
-    <>
-      {tweets?.length &&
-        tweets
-          .filter((t) => t?.authorized === mode)
-          .map((t, i) => <div key={i}>tweet</div>)}
-    </>
+    <div className="bg-[#272B34] p-9 rounded-lg max-h-40 overflow-y-auto">
+      {tweets.map((t, i) => (
+        <div key={i} className="flex">
+          <p className="mr-4">{t.TWEET_AUTHOR_USERNAME}</p>
+          <p>{t.TWEET_TEXT}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -122,38 +97,35 @@ const Selector: React.FC<SelectorProps> = ({
 }) => {
   return (
     <div className="btn-group" role="group">
-      {options.map(({ name, type, style }, i) => {
-        console.log(currentOption, type, currentOption === type);
-        return (
-          <button
-            key={i}
-            type="button"
-            className={classNames(
-              { "rounded-l-lg": i == 0 },
-              { "rounded-r-lg": i == options.length - 1 },
-              "inline-block",
-              "px-6 py-2.5",
-              { "bg-white/50": currentOption !== type },
-              "text-black",
-              "font-semibold",
-              "text-sm",
-              "leading-tight",
-              "uppercase",
-              "hover:bg-white",
-              "hover:text-black",
-              "focus:outline-none",
-              "focus:ring-0 ",
-              "transition ",
-              "ease-in-out",
-              "text-white",
-              { [style]: currentOption === type }
-            )}
-            onClick={() => setOption(type)}
-          >
-            {name}
-          </button>
-        );
-      })}
+      {options.map(({ name, type, style }, i) => (
+        <button
+          key={i}
+          type="button"
+          className={classNames(
+            { "rounded-l-lg": i == 0 },
+            { "rounded-r-lg": i == options.length - 1 },
+            "inline-block",
+            "px-6 py-2.5",
+            { "bg-white/50": currentOption !== type },
+            "text-black",
+            "font-semibold",
+            "text-sm",
+            "leading-tight",
+            "uppercase",
+            "hover:bg-white",
+            "hover:text-black",
+            "focus:outline-none",
+            "focus:ring-0",
+            "transition",
+            "ease-in-out",
+            "text-white",
+            { [style]: currentOption === type }
+          )}
+          onClick={() => setOption(type)}
+        >
+          {name}
+        </button>
+      ))}
     </div>
   );
 };
