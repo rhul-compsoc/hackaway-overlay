@@ -1,13 +1,8 @@
-# Royal Hackaway
+# Royal Hackaway v5 Overlay
 
-- [Website](https://royalhackaway.com)
-  - [Hackaway v5](https://royalhackaway.com/events/hackawayv5/)
-  - [~~freshers hack~~](https://royalhackaway.com/events/freshers2021/)
-  - [~~Hackaway v4~~](https://royalhackaway.com/events/hackawayv4/)
+This is the Royal Hackaway overlay bundle, which includes includes both controls and the frontend graphics visible on stream.
 
-# Information
-
-The Royal Hackaway NodeCG bundle includes both controls and the frontend graphics visible on stream.
+See it in action in our [Best Bits](https://www.youtube.com/watch?v=-4O3grBFW0s) video on YouTube.
 
 ## Running
 
@@ -29,10 +24,6 @@ To run this project:
 
 NodeCG is included as a submodule to keep things stable.
 Update NodeCG by bringing the submodule up to date with `master`.
-
-# Images
-
-![Event Selection Demo](.github/event_demo.gif)
 
 # Contributing
 
