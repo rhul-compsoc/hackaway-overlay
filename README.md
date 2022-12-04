@@ -1,4 +1,4 @@
-# Royal Hackaway v5 Overlay
+# Royal Hackaway Overlay
 
 This is the Royal Hackaway overlay bundle, which includes includes both controls and the frontend graphics visible on stream.
 
