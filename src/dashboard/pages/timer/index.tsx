@@ -58,7 +58,7 @@ class TimerPage extends Component<{}, TimerPageState> {
 
   handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const name = event.target.name;
-    const value = parseInt(event.target.value, 10);
+    const value = parseInt(event.target.value, 10) || 0;
 
     let duration = this.state.duration;
     let secondsRemaining = duration / 1000;
