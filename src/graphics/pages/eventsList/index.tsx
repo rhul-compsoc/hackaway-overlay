@@ -1,67 +1,87 @@
-import React, { Component } from "react";
-import { Event } from "../../../class/Event";
+import React, { useEffect } from "react";
+import { useReplicant } from "use-nodecg";
+import { EventsListDto } from "../../../types";
 import { EventCard } from "./EventCard";
 
-interface EventsPageState {
-  events: string;
-  event: string;
-}
+const EventsListPage = () => {
+  const [events] = useReplicant<EventsListDto, EventsListDto>("events", []);
+  const [selectedEvent] = useReplicant<number, number>("event", 0);
 
-const eventsReplicant = nodecg.Replicant("events", {
-  defaultValue: "08:00;Livestream Begins;Something else",
-});
-const eventReplicant = nodecg.Replicant<string>("event");
+  useEffect(() => {
+    const element = document.getElementById(`event-${selectedEvent}`);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedEvent]);
 
-class EventsListPage extends Component<{}, EventsPageState> {
-  state = {
-    events: "",
-    event: "",
-  };
+  return (
+    <main className="bg-hackaway-grey grid px-3 w-80 h-full overflow-hidden">
+      {events.map((event, index) => (
+        <EventCard
+          currentEventIndex={selectedEvent}
+          index={index}
+          event={event}
+          key={index}
+        />
+      ))}
+      <div className="h-screen"></div>
+    </main>
+  );
+};
 
-  constructor(props: any) {
-    super(props);
-  }
+// const eventsReplicant = nodecg.Replicant("events");
+// const eventReplicant = nodecg.Replicant<string>("event");
 
-  componentDidMount() {
-    eventsReplicant.on("change", (value) => {
-      this.setState({
-        events: value,
-      });
-    });
+// class EventsListPage extends Component<{}, EventsPageState> {
+//   state = {
+//     events: "",
+//     event: "",
+//   };
 
-    eventReplicant.on("change", (value) => {
-      this.setState({
-        event: value,
-      });
+//   constructor(props: any) {
+//     super(props);
+//   }
 
-      const element = document.getElementById(value);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  }
+//   componentDidMount() {
+//     eventsReplicant.on("change", (value) => {
+//       this.setState({
+//         events: value,
+//       });
+//     });
 
-  render(): React.ReactNode {
-    const events = Event.parse(this.state.events);
+//     eventReplicant.on("change", (value) => {
+//       this.setState({
+//         event: value,
+//       });
 
-    let currentEventIndex = events.findIndex(
-      (event) => event.id === this.state.event
-    );
+//       const element = document.getElementById(value);
+//       if (element) {
+//         element.scrollIntoView({ behavior: "smooth" });
+//       }
+//     });
+//   }
 
-    return (
-      <main className="bg-hackaway-grey grid px-3 w-80 h-full overflow-hidden">
-        {events.map((event, index) => (
-          <EventCard
-            currentEventIndex={currentEventIndex}
-            index={index}
-            event={event}
-            key={event.id}
-          />
-        ))}
-        <div className="h-screen"></div>
-      </main>
-    );
-  }
-}
+//   render(): React.ReactNode {
+//     const events = Event.parse(this.state.events);
+
+//     let currentEventIndex = events.findIndex(
+//       (event) => event.id === this.state.event
+//     );
+
+//     return (
+//       <main className="bg-hackaway-grey grid px-3 w-80 h-full overflow-hidden">
+//         {events.map((event, index) => (
+//           <EventCard
+//             currentEventIndex={currentEventIndex}
+//             index={index}
+//             event={event}
+//             key={event.id}
+//           />
+//         ))}
+//         <div className="h-screen"></div>
+//       </main>
+//     );
+//   }
+// }
 
 export { EventsListPage };

@@ -23,7 +23,7 @@
       {
         "name": "eventsList",
         "title": "Events List",
-        "width": 4,
+        "width": 6,
         "file": "eventsList.html",
         "headerColor": "#525F78"
       },

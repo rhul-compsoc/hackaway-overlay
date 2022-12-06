@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Event } from "../../../class/Event";
+import { EventDto } from "../../../types";
 
 interface EventCardProps {
-  event: Event;
+  event: EventDto;
   index: number;
   currentEventIndex: number;
 }
@@ -52,12 +52,22 @@ class EventCard extends Component<EventCardProps, EventCardState> {
   render() {
     const { event, index, currentEventIndex } = this.props;
 
+    const time = event[0]?.value;
+    const name = event[1]?.value;
+    const description = event[2]?.value;
+
     return (
       <div
-        id={event.id}
+        id={`event-${index}`}
         ref={this.container}
         className={this.state.show ? "animate-appear" : "invisible"}
       >
+        {index === currentEventIndex && (
+          <div className="text-white text-2xl mt-5">Current event:</div>
+        )}
+        {index === currentEventIndex + 1 && (
+          <div className="text-white text-2xl mt-5">Next up:</div>
+        )}
         <article
           className={`transition-colors rounded mt-3 p-3 drop-shadow ${
             index < currentEventIndex ? "bg-gray-50 text-gray-500" : ""
@@ -65,21 +75,13 @@ class EventCard extends Component<EventCardProps, EventCardState> {
             index > currentEventIndex ? "bg-gray-100" : ""
           }`}
         >
-          {index === currentEventIndex && <div>Current event:</div>}
-          {index === currentEventIndex + 1 && <div>Next up:</div>}
           <div>
-            {event.time && (
-              <span className="whitespace-nowrap float-right">
-                {event.time}
-              </span>
+            {time && (
+              <span className="whitespace-nowrap float-right">{time}</span>
             )}
-            {event.name && (
-              <span className="text-xl font-bold">{event.name}</span>
-            )}
+            {name && <span className="text-xl font-bold">{name}</span>}
           </div>
-          {event.description && (
-            <div className="text-lg">{event.description}</div>
-          )}
+          {description && <div className="text-lg">{description}</div>}
         </article>
       </div>
     );

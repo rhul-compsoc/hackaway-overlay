@@ -6,7 +6,7 @@ import { SpotifyPage } from "../spotify";
 import { TimerPage } from "../timer";
 
 const AllPage = () => (
-  <div className="">
+  <div className="w-[1920px] h-[1080px] bg-blue-200">
     <div className="fixed">
       <SidePopupPage />
     </div>
