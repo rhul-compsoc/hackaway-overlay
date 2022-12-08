@@ -1,3 +1,4 @@
 [submodule "nodecg"]
 	path = nodecg
 	url = https://github.com/nodecg/nodecg
+	ignore = all

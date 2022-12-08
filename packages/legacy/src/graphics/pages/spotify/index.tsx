@@ -58,7 +58,7 @@ class SpotifyPage extends Component<{}, SpotifyPageState> {
     const { players } = this.state;
 
     return (
-      <div className="h-bottom w-80 bg-hackaway-dark-grey">
+      <div className="absolute bottom-0 h-bottom w-80 bg-hackaway-dark-grey">
         {players
           .slice()
           .reverse()

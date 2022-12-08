@@ -13,24 +13,26 @@ const EventsListPage = () => {
   );
 
   useEffect(() => {
-    setEventsCache(events);
+    console.log("change", events);
+
+    setEventsCache(events.filter((x) => x.every((y) => y !== null)));
     setIsLatestCopy(true);
   }, [events]);
 
   return (
-    <div>
+    <div className="p-2">
       <div className="w-full overflow-x-auto">
         <Spreadsheet
           className="min-w-full"
           data={eventsCache}
           onChange={(newEvents) => {
             setIsLatestCopy(false);
-            setEventsCache(newEvents as EventsListDto);
+            setEventsCache(newEvents);
           }}
           columnLabels={["Time", "Name", "Description"]}
         />
       </div>
-      <div>
+      <div className="flex gap-2">
         <button
           onClick={() => {
             setEvents(eventsCache);

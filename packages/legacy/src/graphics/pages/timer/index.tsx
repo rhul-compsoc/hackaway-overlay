@@ -80,7 +80,7 @@ class TimerPage extends Component<{}, TimerPageState> {
     let hours = Math.floor(secondsRemaining / 3600);
 
     return (
-      <div className="px-5 h-24 text-white inline-flex items-center">
+      <div className="absolute right-0 px-5 h-24 text-white inline-flex items-center">
         <div className="flex flex-col w-20 text-center">
           <span className="text-4xl font-bold">{hours}</span>
           <span className="text-hackaway-orange font-semibold">

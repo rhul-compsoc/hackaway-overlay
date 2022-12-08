@@ -1,4 +1,4 @@
-import { NodeCG } from "../../nodecg/types/server";
+import { NodeCG } from "nodecg/types/server";
 import { spotify } from "./spotify";
 
 const main = (nodecg: NodeCG) => {

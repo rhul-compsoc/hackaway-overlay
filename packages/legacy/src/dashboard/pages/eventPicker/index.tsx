@@ -35,7 +35,7 @@ const EventPickerPage = () => {
                     }
                   />
                 </td>
-                <td className="p-1">{id}</td>
+                <td className="p-1">{id + 1}</td>
                 <td className="p-1">{time}</td>
                 <td className="p-1">{name}</td>
               </tr>

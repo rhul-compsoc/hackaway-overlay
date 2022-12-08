@@ -64,16 +64,14 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
       ...popups.slice(0, this.state.popupIndex),
     ];
     return (
-      <div className="sidePopupPage">
+      <>
         {queueArray.reverse().map((popup, index, slicedArray) => (
           <div
             key={popup.id}
             id={popup.markdown}
-            className={`h-24 p-2 bg-hackaway-grey fixed top-0 left-0 w-5/6 ${
-              index === slicedArray.length - 1
-                ? "animate-slide-from-left z-20"
-                : ""
-            }${index === 0 ? "animate-darken z-10" : ""}`}
+            className={`h-24 p-2 bg-hackaway-grey absolute top-0 left-0 w-5/6 ${
+              index === slicedArray.length - 1 ? "animate-slide-from-left" : ""
+            }${index === 0 ? "animate-darken" : ""}`}
             style={{
               clipPath: "polygon(0 0, 100% 0, calc(100% - 3rem) 100%, 0 100%)",
             }}
@@ -90,7 +88,7 @@ class SidePopupPage extends Component<{}, SidePopupPageState> {
             ></p>
           </div>
         ))}
-      </div>
+      </>
     );
   }
 }

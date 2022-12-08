@@ -8,17 +8,14 @@ See it in action in our [Best Bits](https://www.youtube.com/watch?v=-4O3grBFW0s)
 
 To run this project:
 
-1. Install the dependencies for the bundle
+1. Clone the project properly
+   - `git clone --recursive https://github.com/rhul-compsoc/hackaway-overlay.git`
+   - If you forgot to do that properly, initialise the submodules yourself
+   - `git submodule update --init --recursive --remote`
+2. Install the dependencies for the bundle
    - Run `yarn` in the root folder
-2. Build the NodeCG bundle
-   - `yarn build`
-3. Install the dependencies for NodeCG
-   - Go into the `nodecg` directory
-   - Run `npm i`
-4. You may now start the project
-   - Return to the root folder
+3. Run a development environment
    - `yarn start`
-   - `yarn dev` (for live reload!)
 
 ## Updating NodeCG
 

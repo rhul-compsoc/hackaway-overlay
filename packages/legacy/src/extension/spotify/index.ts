@@ -1,5 +1,5 @@
 import SpotifyWebApi from "spotify-web-api-node";
-import { NodeCG } from "../../../nodecg/types/server";
+import { NodeCG } from "nodecg/types/server";
 
 const SPOTIFY_SCOPES = [
   "user-read-private",

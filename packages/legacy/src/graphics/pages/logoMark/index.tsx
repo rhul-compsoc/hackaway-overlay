@@ -4,7 +4,7 @@ import logo from "./rh-white-montserrat-v5.svg";
 class LogoMark extends Component {
   render() {
     return (
-      <nav>
+      <nav className="absolute">
         <div
           className="h-32 w-96 bg-hackaway-orange flex flex-col items-center justify-center fixed top-0 left-0"
           style={{
