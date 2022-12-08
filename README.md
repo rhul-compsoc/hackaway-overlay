@@ -1,5 +1,10 @@
 # Royal Hackaway Overlay
 
+![A screenshot of the Hackaway Overlay](./media/preview.png)
+
+[![RHUL Computing Society Discord Server](https://img.shields.io/discord/500612695570120704?label=RHUL%20CompSoc)](https://discord.compsoc.dev/)
+[![Royal Hackaway Discord Server](https://img.shields.io/discord/899599866433527808?label=Royal%20Hackaway)](https://discord.gg/8EwQhhRkJv)
+
 This is the Royal Hackaway overlay bundle, which includes includes both controls and the frontend graphics visible on stream.
 
 See it in action in our [Best Bits](https://www.youtube.com/watch?v=-4O3grBFW0s) video on YouTube.
