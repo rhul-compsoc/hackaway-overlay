@@ -19,7 +19,10 @@ To run this project:
    - `git submodule update --init --recursive --remote`
 2. Install the dependencies for the bundle
    - Run `yarn` in the root folder
-3. Run a development environment
+3. Create a symlink of the `node_modules` folder for `nodecg`
+   - Microsoft Windows (cmd.exe): `mklink /J nodecg\node_modules node_modules`
+   - Linux: `ln -s node_modules nodecg\node_modules`
+4. Run a development environment
    - `yarn start`
 
 ## Updating NodeCG
