@@ -11,7 +11,6 @@ const EventPickerPage = () => {
       <table className="w-full table-auto">
         <thead>
           <tr>
-            <th>Select</th>
             <th>ID</th>
             <th>Time</th>
             <th>Event</th>
@@ -27,15 +26,19 @@ const EventPickerPage = () => {
                 <td className="p-1">
                   <input
                     type="radio"
-                    name="eventPicker"
+                    id={`event_picker_${id}`}
+                    name={`event_picker_${id}`}
                     value={id}
                     checked={event === id}
+                    className="p-1"
                     onChange={(x) =>
                       setEvent(parseInt(x.target.value, 10) ?? 0)
                     }
                   />
+                  <label className="pl-3" htmlFor={`event_picker_${id}`}>
+                    {id + 1}
+                  </label>
                 </td>
-                <td className="p-1">{id + 1}</td>
                 <td className="p-1">{time}</td>
                 <td className="p-1">{name}</td>
               </tr>

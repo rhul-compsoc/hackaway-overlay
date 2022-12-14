@@ -6,16 +6,22 @@ import { EventsListDto } from "../../../types";
 
 const EventsListPage = () => {
   const [isLatestCopy, setIsLatestCopy] = useState<boolean>(true);
-  const [eventsCache, setEventsCache] = useState<EventsListDto>([]);
+  const [eventsCache, setEventsCache] = useState<EventsListDto>([
+    [{ value: "" }, { value: "" }, { value: "" }],
+  ]);
   const [events, setEvents] = useReplicant<EventsListDto, EventsListDto>(
     "events",
-    []
+    [[{ value: "" }, { value: "" }, { value: "" }]]
   );
 
   useEffect(() => {
     console.log("change", events);
 
-    setEventsCache(events.filter((x) => x.every((y) => y !== null)));
+    if (events) {
+      setEventsCache(events.filter((x) => x.every((y) => y !== null)));
+    } else {
+      setEventsCache([[{ value: "" }, { value: "" }, { value: "" }]]);
+    }
     setIsLatestCopy(true);
   }, [events]);
 

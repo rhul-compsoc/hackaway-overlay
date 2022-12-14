@@ -4,7 +4,9 @@ import { EventsListDto } from "../../../types";
 import { EventCard } from "./EventCard";
 
 const EventsListPage = () => {
-  const [events] = useReplicant<EventsListDto, EventsListDto>("events", []);
+  const [events] = useReplicant<EventsListDto, EventsListDto>("events", [
+    [{ value: "" }, { value: "" }, { value: "" }],
+  ]);
   const [selectedEvent] = useReplicant<number, number>("event", 0);
 
   useEffect(() => {
