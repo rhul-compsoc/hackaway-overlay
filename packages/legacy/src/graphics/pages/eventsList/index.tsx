@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import { useReplicant } from "use-nodecg";
-import { EventsListDto } from "../../../types";
+import { useReplicant, useSpreadsheet } from "use-nodecg";
 import { EventCard } from "./EventCard";
 
 const EventsListPage = () => {
-  const [events] = useReplicant<EventsListDto, EventsListDto>("events", [
-    [{ value: "" }, { value: "" }, { value: "" }],
-  ]);
-  const [selectedEvent] = useReplicant<number, number>("event", 0);
+  const [events] = useSpreadsheet("events", "matrix", 4);
+  const [selectedEvent] = useReplicant<number>("event", 0);
 
   useEffect(() => {
     const element = document.getElementById(`event-${selectedEvent}`);
@@ -18,7 +15,7 @@ const EventsListPage = () => {
 
   return (
     <main className="bg-hackaway-grey grid px-3 w-80 h-full overflow-hidden">
-      {events.map((event, index) => (
+      {events?.map((event, index) => (
         <EventCard
           currentEventIndex={selectedEvent}
           index={index}

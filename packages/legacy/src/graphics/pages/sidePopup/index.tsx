@@ -1,96 +1,67 @@
-import React, { Component } from "react";
 import { marked } from "marked";
+import React, { useEffect, useMemo, useState } from "react";
+import { useSpreadsheet } from "use-nodecg";
 
-interface SidePopupPageState {
-  popups: PopupInterface[];
-  popupIndex: number;
-  popupId: number;
-}
+const SidePopupPage = () => {
+  const [popups] = useSpreadsheet("sidePopups", "matrix", 3);
+  const [popupIndex, setPopupIndex] = useState<number>(0);
 
-const sidePopupMessagesReplicant =
-  nodecg.Replicant<PopupInterface[]>("sidePopup.messages");
+  const filteredPopups = popups.map((x, i) => ({ id: i, popup: x }));
 
-class SidePopupPage extends Component<{}, SidePopupPageState> {
-  constructor(props: any) {
-    super(props);
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
 
-    this.state = {
-      popups: [],
-      popupIndex: 0,
-      popupId: 0,
-    };
-    this.setMessages = this.setMessages.bind(this);
-    this.nextMessage = this.nextMessage.bind(this);
-    this.getPopups = this.getPopups.bind(this);
-  }
-  getPopups() {
-    return this.state.popups.filter((popup) => popup.show);
-  }
-  componentDidMount() {
-    sidePopupMessagesReplicant.on("change", this.setMessages);
-    this.nextMessage();
-  }
-  componentWillUnmount() {
-    sidePopupMessagesReplicant.removeListener("change", this.setMessages);
-  }
-  setMessages(payload: PopupInterface[]) {
-    this.setState({
-      popups: payload,
-    });
-  }
-  nextMessage() {
-    const popups = this.getPopups();
+    if (filteredPopups.length) {
+      const [_, duration] = filteredPopups[popupIndex ?? 0].popup;
 
-    if (popups.length) {
-      const { popupIndex, popups } = this.state;
-      const newPopupIndex = (popupIndex + 1) % popups.length;
-      const newMessage = popups[newPopupIndex];
-      this.setState({
-        popupIndex: newPopupIndex,
-        popupId: newMessage.id,
-      });
+      const parsedDuration = parseInt(duration, 10);
+      let waitDuration =
+        !parsedDuration || isNaN(parsedDuration) ? 500 : parsedDuration;
 
-      setTimeout(this.nextMessage, newMessage.time * 1000);
-    } else {
-      setTimeout(this.nextMessage, 100);
+      timeout = setTimeout(() => {
+        setPopupIndex(((popupIndex ?? 0) + 1) % filteredPopups.length);
+      }, waitDuration);
     }
-  }
 
-  render() {
-    const popups = this.getPopups();
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [popups]);
 
-    const queueArray = [
-      ...popups.slice(this.state.popupIndex),
-      ...popups.slice(0, this.state.popupIndex),
-    ];
-    return (
-      <>
-        {queueArray.reverse().map((popup, index, slicedArray) => (
+  const queueArray = [
+    ...filteredPopups.slice(popupIndex),
+    ...filteredPopups.slice(0, popupIndex),
+  ];
+
+  return (
+    <div className="opacity-80">
+      {queueArray.map((data, index, slicedArray) => {
+        const [_, __, content] = data.popup;
+        return (
           <div
-            key={popup.id}
-            id={popup.markdown}
-            className={`h-24 p-2 bg-hackaway-grey absolute top-0 left-0 w-5/6 ${
+            key={data.id}
+            className={`h-24 p-2 bg-hackaway-grey absolute top-0 left-0 w-full ${
               index === slicedArray.length - 1 ? "animate-slide-from-left" : ""
             }${index === 0 ? "animate-darken" : ""}`}
             style={{
-              clipPath: "polygon(0 0, 100% 0, calc(100% - 3rem) 100%, 0 100%)",
+              clipPath: "polygon(0 0, calc(100% - 3rem) 0, 100% 100%, 0 100%)",
             }}
           >
             <div
-              className="h-24 w-96 float-left"
+              className="h-24 w-full float-left"
               style={{
-                shapeOutside: "polygon(0 0, 24rem 0, 21rem 100%, 0 100%)",
+                shapeOutside: "polygon(0 0, 733px 0, 763px 100%, 0 100%)",
               }}
             ></div>
             <p
-              className="text-white relative top-1/2 -translate-y-1/2 -translate-x-2.5"
-              dangerouslySetInnerHTML={{ __html: marked.parse(popup.markdown) }}
+              className="text-white relative top-1/2 -translate-y-1/2 -translate-x-2.5 pr-4"
+              dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
             ></p>
           </div>
-        ))}
-      </>
-    );
-  }
-}
+        );
+      })}
+    </div>
+  );
+};
 
 export { SidePopupPage };

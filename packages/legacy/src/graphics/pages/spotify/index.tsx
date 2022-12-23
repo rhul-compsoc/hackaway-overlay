@@ -58,39 +58,35 @@ class SpotifyPage extends Component<{}, SpotifyPageState> {
     const { players } = this.state;
 
     return (
-      <div className="absolute bottom-0 h-bottom w-80 bg-hackaway-dark-grey">
-        {players
-          .slice()
-          .reverse()
-          .map((player: SpotifyPlayer, index) => (
-            <div
-              key={player.timestamp}
-              className={`h-bottom w-80 bg-hackaway-dark-grey fixed animate-slide-from-top ${
-                index !== 0 ? "animate-darken" : ""
-              }`}
-            >
-              {player.is_playing ? (
-                <div className="flex">
-                  <img
-                    className="h-bottom object-contain"
-                    src={this.getPlayerAlbumArt(player)}
-                  ></img>
-                  <div className="flex flex-col justify-center pl-4 text-white">
-                    <p className="text-xl font-bold leading-5">
-                      {player?.item?.name}
-                    </p>
-                    <p className="italic leading-5">
-                      {this.getPlayerArtists(player)}
-                    </p>
-                  </div>
+      <div className="absolute bottom-0 h-48 bg-hackaway-dark-grey">
+        {players.slice().map((player: SpotifyPlayer, index) => (
+          <div
+            key={player.timestamp}
+            className={`h-48 w-full fixed transition-opacity opacity-100 ${
+              index !== 0 ? "opacity-0" : ""
+            }`}
+          >
+            {player.is_playing ? (
+              <div className="flex">
+                <img
+                  className="h-48 w-48 object-contain"
+                  src={this.getPlayerAlbumArt(player)}
+                ></img>
+                <div className="flex flex-col justify-center pl-4 text-white">
+                  <p className="text-4xl font-bold">{player?.item?.name}</p>
+                  <p className="text-2xl">{player?.item?.album?.name}</p>
+                  <p className="text-2xl italic">
+                    {this.getPlayerArtists(player)}
+                  </p>
                 </div>
-              ) : (
-                <div className="h-bottom flex justify-center items-center p-2 text-gray-500">
-                  <p className="text-xl font-bold">Nothing playing...</p>
-                </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ) : null
+            // <div className="h-48 flex justify-center items-center p-2 text-gray-500">
+            //   <p className="text-xl font-bold">Nothing playing...</p>
+            // </div>
+            }
+          </div>
+        ))}
       </div>
     );
   }

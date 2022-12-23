@@ -83,19 +83,19 @@ class TimerPage extends Component<{}, TimerPageState> {
       <div className="absolute right-0 px-5 h-24 text-white inline-flex items-center">
         <div className="flex flex-col w-20 text-center">
           <span className="text-4xl font-bold">{hours}</span>
-          <span className="text-hackaway-orange font-semibold">
+          <span className="text-white font-semibold">
             hour{hours === 1 ? "" : "s"}
           </span>
         </div>
         <div className="flex flex-col w-20 text-center">
           <span className="text-4xl font-bold">{minutes}</span>
-          <span className="text-hackaway-orange font-semibold">
+          <span className="text-white font-semibold">
             minute{minutes === 1 ? "" : "s"}
           </span>
         </div>
         <div className="flex flex-col w-20 text-center">
           <span className="text-4xl font-bold">{seconds}</span>
-          <span className="text-hackaway-orange font-semibold">
+          <span className="text-white font-semibold">
             second{seconds === 1 ? "" : "s"}
           </span>
         </div>

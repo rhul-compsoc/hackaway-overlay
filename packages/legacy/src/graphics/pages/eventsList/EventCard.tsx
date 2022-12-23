@@ -4,7 +4,7 @@ import { EventDto } from "../../../types";
 interface EventCardProps {
   event: EventDto;
   index: number;
-  currentEventIndex: number;
+  currentEventIndex: number | null;
 }
 
 interface EventCardState {
@@ -51,10 +51,7 @@ class EventCard extends Component<EventCardProps, EventCardState> {
 
   render() {
     const { event, index, currentEventIndex } = this.props;
-
-    const time = event[0]?.value;
-    const name = event[1]?.value;
-    const description = event[2]?.value;
+    const [time, name, description] = event;
 
     return (
       <div
@@ -62,17 +59,29 @@ class EventCard extends Component<EventCardProps, EventCardState> {
         ref={this.container}
         className={this.state.show ? "animate-appear" : "invisible"}
       >
-        {index === currentEventIndex && (
-          <div className="text-white text-2xl mt-5">Current event:</div>
-        )}
-        {index === currentEventIndex + 1 && (
-          <div className="text-white text-2xl mt-5">Next up:</div>
+        {currentEventIndex !== null && (
+          <>
+            {index === currentEventIndex && (
+              <div className="text-white text-2xl mt-5">Current event:</div>
+            )}
+            {index === currentEventIndex + 1 && (
+              <div className="text-white text-2xl mt-5">Next up:</div>
+            )}
+          </>
         )}
         <article
           className={`transition-colors rounded mt-3 p-3 drop-shadow ${
-            index < currentEventIndex ? "bg-gray-50 text-gray-500" : ""
-          }${index === currentEventIndex ? "bg-gray-300" : ""}${
-            index > currentEventIndex ? "bg-gray-100" : ""
+            currentEventIndex !== null && index < currentEventIndex
+              ? "bg-gray-50 text-gray-500"
+              : ""
+          }${
+            currentEventIndex !== null && index === currentEventIndex
+              ? "bg-gray-300"
+              : ""
+          }${
+            currentEventIndex !== null && index > currentEventIndex
+              ? "bg-gray-100"
+              : ""
           }`}
         >
           <div>

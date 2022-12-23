@@ -5,8 +5,11 @@ const path = require("path");
 // const { EnvironmentPlugin } = require("webpack");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 
-const entrypoints = ["./dashboard/index.tsx", "./graphics/index.tsx"];
-const pages = [
+const entrypoints = /** @type { const } */ (["dashboard", "graphics"]);
+
+const pages = /** @type { const } */ ([
+  "allEventsSlider",
+  "cornerSponsors",
   "eventsList",
   "eventPicker",
   "logoMark",
@@ -16,7 +19,7 @@ const pages = [
   "sidePopup",
   "live",
   "all",
-];
+]);
 
 const SRC = path.resolve(__dirname, "src");
 
@@ -72,7 +75,7 @@ const configs = ({ environment = "development" }) => {
       },
     },
     ...entrypoints.map((entrypoint) => {
-      const parsed = path.parse(entrypoint);
+      const parsed = path.parse(`./${entrypoint}/index.tsx`);
 
       return {
         mode: environment,
@@ -108,11 +111,7 @@ const configs = ({ environment = "development" }) => {
             },
             {
               test: /\.(png|jpe?g|gif|svg|woff2?)$/i,
-              use: [
-                {
-                  loader: "file-loader",
-                },
-              ],
+              type: "asset",
             },
           ],
         },
@@ -122,12 +121,15 @@ const configs = ({ environment = "development" }) => {
         plugins: [
           new HtmlWebpackPlugin({
             template: path.resolve(SRC, parsed.dir, "index.html"),
+            baseUrl: "/",
+            baseUrl: `/bundles/royalhackaway-overlay/${entrypoint}/`,
           }),
           ...pages.map(
             (page) =>
               new HtmlWebpackPlugin({
                 template: path.resolve(SRC, parsed.dir, "index.html"),
                 filename: page + ".html",
+                baseUrl: `/bundles/royalhackaway-overlay/${entrypoint}/`,
               })
           ),
           new WebpackLiveReloadPlugin({

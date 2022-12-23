@@ -8,7 +8,7 @@ module.exports = {
       },
       colors: {
         "hackaway-orange": "#eb6824",
-        "hackaway-grey": "#364152",
+        "hackaway-grey": "#1f1e1e",
         "hackaway-dark-grey": "#212529",
       },
       keyframes: {
@@ -52,6 +52,10 @@ module.exports = {
         darken: "darken 1s ease-in-out forwards",
         disappear: "disappear 1s ease-in-out forwards",
         appear: "disappear 1s ease-in-out reverse",
+      },
+      transitionProperty: {
+        size: "width, height, margin",
+        "font-size": "font-size",
       },
     },
   },

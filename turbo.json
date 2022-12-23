@@ -6,7 +6,7 @@
     },
     "watch": {},
     "start": {
-      "dependsOn": ["bundle"],
+      "dependsOn": ["watch"],
       "cache": false
     },
     "format": {

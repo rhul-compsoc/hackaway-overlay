@@ -1,13 +1,13 @@
-import React, { Component, useState } from "react";
-import { EventsListDto } from "../../../types";
-import { useReplicant } from "use-nodecg";
+import React from "react";
+import { useReplicant, useSpreadsheet } from "use-nodecg";
+import { DashboardContainer } from "../../components/DashboardContainer";
 
 const EventPickerPage = () => {
-  const [events] = useReplicant<EventsListDto, EventsListDto>("events", []);
-  const [event, setEvent] = useReplicant<number, number>("event", 0);
+  const [events] = useSpreadsheet("events", "matrix", 4);
+  const [currentEventId, setEvent] = useReplicant<number>("event");
 
   return (
-    <div className="p-2">
+    <DashboardContainer>
       <table className="w-full table-auto">
         <thead>
           <tr>
@@ -17,9 +17,8 @@ const EventPickerPage = () => {
           </tr>
         </thead>
         <tbody>
-          {events.map((row, id) => {
-            const time = row[0]?.value;
-            const name = row[1]?.value;
+          {events.map((event, id) => {
+            const [time, name] = event;
 
             return (
               <tr key={id} className="divide-y">
@@ -29,7 +28,7 @@ const EventPickerPage = () => {
                     id={`event_picker_${id}`}
                     name={`event_picker_${id}`}
                     value={id}
-                    checked={event === id}
+                    checked={currentEventId === id}
                     className="p-1"
                     onChange={(x) =>
                       setEvent(parseInt(x.target.value, 10) ?? 0)
@@ -46,7 +45,7 @@ const EventPickerPage = () => {
           })}
         </tbody>
       </table>
-    </div>
+    </DashboardContainer>
   );
 };
 

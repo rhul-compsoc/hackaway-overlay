@@ -19,6 +19,22 @@
   ],
   "nodecg": {
     "compatibleRange": "^1.1.1",
+    "assetCategories": [
+      {
+        "name": "test",
+        "title": "Test",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png",
+          "JPG",
+          "JPEG",
+          "GIF",
+          "PNG"
+        ]
+      }
+    ],
     "dashboardPanels": [
       {
         "name": "eventsList",
@@ -50,16 +66,9 @@
       },
       {
         "name": "sidePopup",
-        "title": "Top Bar Cards",
-        "width": 4,
+        "title": "Bottom Bar Cards",
+        "width": 6,
         "file": "sidePopup.html",
-        "headerColor": "#525F78"
-      },
-      {
-        "name": "live",
-        "title": "Live Indicator",
-        "width": 4,
-        "file": "live.html",
         "headerColor": "#525F78"
       }
     ],
@@ -70,19 +79,24 @@
         "height": 868
       },
       {
+        "file": "allEventsSlider.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "cornerSponsors.html",
+        "width": 633,
+        "height": 139
+      },
+      {
         "file": "logoMark.html",
-        "width": 384,
-        "height": 128
+        "width": 320,
+        "height": 80.45
       },
       {
         "file": "timer.html",
         "width": 280,
         "height": 96
-      },
-      {
-        "file": "doovde.html",
-        "width": 1920,
-        "height": 1080
       },
       {
         "file": "spotify.html",
@@ -93,16 +107,6 @@
         "file": "sidePopup.html",
         "width": 1920,
         "height": 96
-      },
-      {
-        "file": "live.html",
-        "width": 1000,
-        "height": 32
-      },
-      {
-        "file": "all.html",
-        "width": 1920,
-        "height": 1080
       }
     ]
   },
